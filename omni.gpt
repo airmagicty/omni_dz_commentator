@@ -1,0 +1,27 @@
+Найти все
+<div class="hw-md_item ng-scope" ng-repeat="works in studWorkData | orderBy: 'stud_date'" ng-if="$index <= activeHwCount" style=""></div>
+Внутр каждого из них найти 
+<md-radio-group class="hw-md_single__select-mark ng-pristine ng-untouched ng-valid _md ng-empty" ng-model="works.mark" aria-labelledby="selectedAvatar" role="radiogroup" tabindex="0" aria-invalid="false"></md-radio-group>
+В ней найти
+<md-radio-button ng-repeat="mark in arrayMarks | orderBy : toNumber" ng-value="mark" aria-label="1" class="ng-scope" id="radio_143" role="radio" aria-checked="false" value="1"><div class="md-container md-ink-ripple" md-ink-ripple="" md-ink-ripple-checkbox=""><div class="md-off"></div><div class="md-on"></div></div><div ng-transclude="" class="md-label"><button class="md-button ng-scope md-ink-ripple" type="button" ng-transclude=""><span class="ng-binding ng-scope">1</span></button></div></md-radio-button>
+Всего таких кнопок 12
+1|2|3|4|5|6|7|8|9|10|11|12
+Если одна из них выбрана, то она изменяется
+<md-radio-button ng-repeat="mark in arrayMarks | orderBy : toNumber" ng-value="mark" aria-label="1" class="ng-scope md-checked" id="radio_143" role="radio" aria-checked="true" value="1"><div class="md-container md-ink-ripple" md-ink-ripple="" md-ink-ripple-checkbox=""><div class="md-off"></div><div class="md-on"></div></div><div ng-transclude="" class="md-label"><button class="md-button ng-scope md-ink-ripple" type="button" ng-transclude=""><span class="ng-binding ng-scope">1</span></button></div></md-radio-button>
+Так же в <div class="hw-md_item ng-scope"... есть еще
+<textarea ng-model="works.coment" ng-change="works = validateCommentLength(works)" md-select-on-focus="" maxlength="1000" class="hw-md_single_teacher__comment custom-style ng-valid md-input ng-valid-maxlength ng-touched ng-dirty ng-valid-parse ng-not-empty" name="" id="input_142" rows="1" aria-invalid="false" style="height: 180px;"></textarea>
+В нее надо поместить то число из 1|2|3|4|5|6|7|8|9|10|11|12, какое сейчас выбрано
+Все это нужно искать, проверять и заполнять каждые 5 сек
+
+
+js
+Есть список фраз с диапазоном:
+{["Фраза1", 1(число, минимальное из диапазона), 12(число, максимальное из диапазона)],
+["Фраза2", 12(число, минимальное из диапазона), 12(число, максимальное из диапазона)]}
+...
+
+На вход получаем число от 1 до 12. Необходимо из списка фраз выбрать случайную фразу, которая принадлежит диапазону, указанному в фразе.
+Если диапазон указан некорректно, то фраза игнорируется и не попадает ни в какой из диапазонов
+Если минимальное больше указанного максимального, то искать между ними
+Если минимальное равно максимальному - то диапазон = само число
+На выходе вернуть фразу
